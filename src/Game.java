@@ -14,7 +14,7 @@ class Game {
                 while (textReader.ready()) {
                     GAMETEXTCONTENTLIST.add(textReader.readLine());
                 }
-                townName = GAMETEXTCONTENTLIST.get(r.nextInt(11, 31));
+                townName = GAMETEXTCONTENTLIST.get(r.nextInt(11, 30));
             } catch (IOException e) {
                 e.printStackTrace();
             }
