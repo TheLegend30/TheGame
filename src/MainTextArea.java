@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 class MainTextArea extends JTextArea {
-    private ArrayList<String> allText = new ArrayList<>();
 
     public MainTextArea() {
         this.setBackground(Color.LIGHT_GRAY);
@@ -20,25 +19,15 @@ class MainTextArea extends JTextArea {
     }
 
     public void addText(String text) {
-        if (allText.size() > 20) {
-            allText.remove(0);
-        }
-        allText.add(
-                "[" +
-                        LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) +
-                        "] " +
-                        text +
-                        "\n");
-
-        text = "";
-        for (String s : allText) {
-            text += s;
-        }
-        this.setText(text);
+        text = ("[" +
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) +
+                "] " +
+                text +
+                "\n");
+        this.append(text);
     }
 
     public void clear() {
-        allText.clear();
         this.setText("");
     }
 }
