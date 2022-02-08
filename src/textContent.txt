@@ -1,0 +1,36 @@
+It's a simple room with the stone walls.
+It's a simple room with the stone walls.
+It's a simple room with the stone walls.
+It's a simple room with the stone walls.
+It's a dirty room with iron walls.
+It's a simple room with the stone walls.
+It's a simple room with the iron walls.
+It's a simple room with the iron walls.
+It's a spacious room with the iron walls.
+It's a spacious room with the stone walls.
+/////////////////TOWN NAMES 11////////////////////////////
+Dry Gulch
+Ayrith
+Pinnella Pass
+Garrigill
+Hewe
+Aempleforth
+Aberdyfi
+Zalfari
+Erostey
+Fool's March
+Lanercost
+Draycott
+Wellspring
+Alryne
+Glossop
+Cirrane
+Kirekwall
+Begger's Hole
+Narthwich
+/////////////////////////31///////////////////////////
+
+///////////////////Bartenders Talk 33/////////////////
+I don't know anything for now, so leave me alone. But thanks for money, fool.
+Wanna joke? Get out of my tavern!
+/////////////////////////35///////////////////////////

@@ -3,26 +3,28 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class MyFrame extends JFrame implements ActionListener {
+class MyFrame extends JFrame {
     public MainTextArea mainTextArea;
     public HeroStatTextArea heroStatTextArea;
     public HeroTextInput heroTextInput;
+    private JScrollPane scrollPane;
     private Button helpButton;
-    private final String helpText = "This is a roguelike game controlled by console input. There are several commands." +
-            "\n * go - (obviously) to go" +
-            //"\n * inv - for inventory" +
-            "\n * atk - to attack" +
-            //"\n * def - to defend" +
-            "\n * esc - to escape" +
-            "\nThis is arcade, so game doesn't have final or plot." +
-            "\nThe goal is to pass more levels of the dungeon" +
-            "\nThis is a very alpha version of game (0.01a)";
+    private final String helpText = """
+            This is a roguelike game controlled by console input. There are several commands.
+             * go - (obviously) to go
+             * atk - to attack
+             * esc - to escape
+             * clr - to clear main console
+             * town/dung - to go to town/dungeon
+            This is arcade, so game doesn't have final or plot.
+            The goal is to pass more levels of the dungeon
+            This is a very alpha version of game (0.01b)""";
 
     public MyFrame() {
 
         helpButton = new Button("HELP");
         helpButton.setBounds(650, 425, 100, 100);
-        helpButton.addActionListener(this);
+        helpButton.addActionListener((e -> JOptionPane.showMessageDialog(null, helpText, "Help", JOptionPane.INFORMATION_MESSAGE)));
 
         mainTextArea = new MainTextArea();
 
@@ -31,10 +33,16 @@ class MyFrame extends JFrame implements ActionListener {
         heroTextInput = new HeroTextInput();
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("Little text game");
+        this.setTitle("The great ballad of the fallen in the darkest of all dungeons");
         this.setSize(800, 600);
+        this.setIconImage(new ImageIcon("sword.png").getImage());
 
-        this.add(mainTextArea);
+        scrollPane = new JScrollPane(mainTextArea);
+        scrollPane.setSize(new Dimension(600, 400));
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+
+        this.add(scrollPane);
         this.add(heroStatTextArea);
         this.add(helpButton);
         this.add(heroTextInput);
@@ -42,12 +50,5 @@ class MyFrame extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setLayout(null);
         this.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == helpButton) {
-            JOptionPane.showMessageDialog(null, helpText, "Help", JOptionPane.INFORMATION_MESSAGE);
-        }
     }
 }
