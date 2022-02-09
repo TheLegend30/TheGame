@@ -9,6 +9,9 @@ class MainHero {
     public static MainHero getInstance() {
         if (hero == null) {
             hero = new MainHero();
+            String name = JOptionPane.showInputDialog("Enter your name");
+            hero.setName(name.isEmpty()? hero.getName() : name);
+            hero.updateHeroInfo();
         }
         return hero;
     }
@@ -21,7 +24,6 @@ class MainHero {
     private int atk = 2;
     private Location location = Location.TOWN;
     private int def = 0;
-    private boolean dead = false;
     private static final String prolog = "You are a simple peasant who works in the field all day long. One day you heard that a cave located near your town "
             + Game.getTownName()
             + " is full of treasures. But monsters and stuff hide it from prying eyes. You decide that no danger can stop you from becoming a treasure hunter. That day has come and you're ready to enter the cave.";
@@ -45,9 +47,8 @@ class MainHero {
     public void levelUp() {
         this.level++;
         String[] options = {"Health", "Attack", "Defense"};
-        JOptionPane j = new JOptionPane();
         while (true) {
-            int prefUpgrade = JOptionPane.showOptionDialog(Main.frame, "Congratulations! What do you want to upgrade?", "Level up", 0, JOptionPane.QUESTION_MESSAGE, null, options, "Health");
+            int prefUpgrade = JOptionPane.showOptionDialog(Main.frame, "Congratulations! What do you want to upgrade?", "Level up", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "Health");
             switch (prefUpgrade) {
                 case 0:
                     maxHealth +=10;
@@ -69,7 +70,6 @@ class MainHero {
 
     public void death() {
         if (this.health <= 0) {
-            this.dead = true;
             JOptionPane.showMessageDialog(null, "You were killed.");
             System.exit(0);
         }
@@ -77,14 +77,6 @@ class MainHero {
 
     public void heal() {
         hero.setHealth(maxHealth);
-    }
-
-    public boolean isDead() {
-        return dead;
-    }
-
-    public void setDead(boolean dead) {
-        this.dead = dead;
     }
 
     public String getName() {
