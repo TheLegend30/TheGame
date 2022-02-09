@@ -35,11 +35,11 @@ class Game {
     }
 
     public void checkInput(String inputText) {
-        if (MainHero.getInstance().getLocation().getName().equalsIgnoreCase(Location.DUNGEON.getName())) {
+        if (inputText.equalsIgnoreCase("clr")) {
+            Main.frame.mainTextArea.clear();
+        } else if (MainHero.getInstance().getLocation().getName().equalsIgnoreCase(Location.DUNGEON.getName())) {
             if (inputText.equalsIgnoreCase("Talk")) {
                 Main.addText("To who?");
-            } else if (inputText.equalsIgnoreCase("clr")) {
-                Main.frame.mainTextArea.clear();
             } else if (inputText.equalsIgnoreCase("town")) {
                 Main.addText("You get back to your town " + townName + "\n You can visit the tavern");
                 MainHero.getInstance().setLocation(Location.TOWN);
@@ -93,7 +93,7 @@ class Game {
                 if (MainHero.getInstance().getGold() == 0) {
                     Main.addText("Leave the tavern, you filth beggar!");
                 } else {
-                    MainHero.getInstance().setGold(MainHero.getInstance().getGold()-1);
+                    MainHero.getInstance().setGold(MainHero.getInstance().getGold() - 1);
                     Main.addText("YAPPY! (somehow you've restored your health)");
                     MainHero.getInstance().heal();
                     MainHero.getInstance().updateHeroInfo();
@@ -102,8 +102,8 @@ class Game {
                 if (MainHero.getInstance().getGold() == 0) {
                     Main.addText("I won't talk for free. Leave me alone, " + MainHero.getInstance().getName());
                 } else {
-                    MainHero.getInstance().setGold(MainHero.getInstance().getGold()-1);
-                    Main.addText(GAMETEXTCONTENTLIST.get(r.nextInt(33,35)));
+                    MainHero.getInstance().setGold(MainHero.getInstance().getGold() - 1);
+                    Main.addText(GAMETEXTCONTENTLIST.get(r.nextInt(33, 35)));
                     MainHero.getInstance().updateHeroInfo();
                 }
             } else {

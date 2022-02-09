@@ -19,12 +19,12 @@ class MainHero {
     private int health = 10;
     private int maxHealth = 10;
     private int atk = 2;
-    private Location location = Location.DUNGEON;
+    private Location location = Location.TOWN;
     private int def = 0;
     private boolean dead = false;
     private static final String prolog = "You are a simple peasant who works in the field all day long. One day you heard that a cave located near your town "
             + Game.getTownName()
-            + " is full of treasures. But monsters and stuff hide it from prying eyes. You decide that no danger can stop you from becoming a treasure hunter. That day has come and you have entered the cave.";
+            + " is full of treasures. But monsters and stuff hide it from prying eyes. You decide that no danger can stop you from becoming a treasure hunter. That day has come and you're ready to enter the cave.";
 
     private MainHero() {
         Main.addText(prolog);
@@ -44,10 +44,26 @@ class MainHero {
 
     public void levelUp() {
         this.level++;
-        this.atk += level;
-        this.def += level * 0.5;
-        this.maxHealth += level * 5;
-        this.health = maxHealth;
+        String[] options = {"Health", "Attack", "Defense"};
+        JOptionPane j = new JOptionPane();
+        while (true) {
+            int prefUpgrade = JOptionPane.showOptionDialog(Main.frame, "Congratulations! What do you want to upgrade?", "Level up", 0, JOptionPane.QUESTION_MESSAGE, null, options, "Health");
+            switch (prefUpgrade) {
+                case 0:
+                    maxHealth +=10;
+                    break;
+                case 1:
+                    atk+=1;
+                    break;
+                case 2:
+                    def+=1;
+                    break;
+                default:
+                    continue;
+            }
+            break;
+        }
+        heal();
         this.updateHeroInfo();
     }
 
